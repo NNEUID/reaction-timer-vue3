@@ -1,9 +1,6 @@
 <template>
-  <div class="score">
-    <h5>Reaction time: {{ score }}ms</h5>
-    <p class="rank">{{ rank }}</p>
-  </div>
-
+  <h5 class="score">Reaction time: {{ score }}ms</h5>
+  <p class="rank score">{{ rank }}</p>
 </template>
 <script>
 export default {
@@ -16,7 +13,7 @@ export default {
   mounted() {
     if (this.score < 250) {
       this.rank = `Alla, Bossu!🙌🏽`
-    } else if(this.score < 400) {
+    } else if (this.score < 400) {
       this.rank = 'Uhuh, okay!👏🏾'
     } else {
       this.rank = 'Masa, why? Were you sleeping?😂'
@@ -28,6 +25,7 @@ export default {
 .score {
   text-align: center;
 }
+
 .rank {
   font-size: 1.4em;
   color: #0faf87;
