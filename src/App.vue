@@ -1,10 +1,12 @@
 <template>
   <h1>REACTION TIMER</h1>
   <button @click="start" :disabled="isPlaying">Play</button>
-  <Block v-if="isPlaying" :delay="delay"/>
+  <Block v-if="isPlaying" :delay="delay" @end="endGame"/>
+  <p v-if="score">Reaction time: {{ score }}ms</p>
 </template>
 
 <script>
+import { react } from '@babel/types'
 import Block from './components/Block.vue'
 export default {
   name: 'App',
@@ -14,13 +16,19 @@ export default {
   data() {
     return {
       isPlaying: false,
-      delay: null
+      delay: null,
+      score: null
     }
   },
   methods: {
     start() {
       this.delay = 2000 + Math.random() * 5000
       this.isPlaying = true
+      this.score = null
+    },
+    endGame(reactionTime) {
+      this.score = reactionTime
+      this.isPlaying = false
     }
   }
 }
